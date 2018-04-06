@@ -1,0 +1,15 @@
+﻿
+Integrantes:
+	Esquivel Guevara, Franklin Armando EG171989
+	Lemus Guardado, Carlos Alexander   LG171618
+	López Cañas, Leonardo Elenilson    LC171998
+	Romero Quijano, Kevin Alejandro    RQ172027
+
+Usuarios
+
+ - franklin.esquivel@outlook.com -> 20150126
+ - fulano@gmail.com -> hola
+ - mojicalemus@gmail.com -> hola
+ - ramiro@gmail.com -> ramiro
+
+INDICACIONES: Sí la conexión a la base no sirve modificar el archivo .ENV, gracias de antemano

@@ -52,5 +52,19 @@ class UsersTableSeeder extends Seeder
             "user_type_id" => 'CLE',
             "municipio_id" => 5
         ]);
+
+        App\User::create([
+            "dui" => '69857569-8',
+            'email' => 'ramiro@gmail.com',
+            'password' => bcrypt('ramiro'),
+            "nombre" => 'Ramiro',
+            "apellido" => 'Martínez',
+            "fechaNac" => '1995-09-26',
+            "edad" => 23,
+            "direccion" => 'Por allá',
+            "telefono" => '00000000',
+            "user_type_id" => 'CLE',
+            "municipio_id" => 5
+        ]);
     }
 }

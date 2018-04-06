@@ -37,9 +37,6 @@
                         </ul>
                         <li><a class="dropdown-trigger" id="dropA" data-target="dpdItem">Cuentas<i class="material-icons right">arrow_drop_down</i></a></li>
                     @else
-<<<<<<< HEAD
-                    <li><a href="{{-- url(strtolower(auth()->user()->userType->id)) --}}">Inicio <i class="material-icons">home</i></a></li>
-=======
                         <ul id="dpdItem" class="dropdown-content">
                             <li><a href="{{ route('users.index') }}">Listar <i class=material-icons>remove_red_eye</i></a></li>
                         </ul>
@@ -50,7 +47,6 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
                 @else
                     <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
->>>>>>> 1926cc2a711158e8ac3d6a646ed49eafb5172e58
                 @endif
             </ul>
         </div>

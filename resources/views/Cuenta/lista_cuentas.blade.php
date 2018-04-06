@@ -7,9 +7,6 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-    <form method="GET" action="cuentas.create">
-        <input type="submit" value="Ingresar nueva cuenta">
-    </form>
     <table class="table bordered centered">
         <tr class="red lighten-4 red-text text-darken-4">
             <th class="center">Numero de cuenta</th>

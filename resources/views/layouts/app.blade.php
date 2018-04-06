@@ -26,8 +26,7 @@
             <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 @if(auth()->check())
-                    <li><a href="{{ url(strtolower(auth()->user()->userType->id))  }}">Inicio <i class="material-icons left">home</i></a></li>
-
+                    
                     @if(auth()->user()->isClient())
                         <ul id="dpdItem" class="dropdown-content">
                             <li><a href="{{ route('cuentas.create') }}">Añadir <i class="material-icons">add</i></a></li>

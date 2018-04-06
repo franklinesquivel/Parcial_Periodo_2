@@ -22,8 +22,9 @@ class CuentaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {//Formulario de nueva cuenta
+        $usuarios = User::where('user_type_id', '=', 'CLE')->pluck('dui', 'id');
+        return view('Cuenta.agregar_cuenta', ['usuarios' => $usuarios]);
     }
 
     /**
@@ -33,8 +34,16 @@ class CuentaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {//Nueva cuenta
+        $cuenta = new Cuenta();
+
+        $cuenta->saldo = $request->input('monto');
+        $cuenta->numCuenta = $request->input('numCuenta');
+        $cuenta->user_id = $request->input('usuario');
+        if($cuenta->save()){
+            return redirect()->route('cuenta.create')->with('message', 'Registro exitoso!');
+        }
+        return redirect()->route('cuenta.create')->with('message', 'Registro no exitoso!');
     }
 
     /**

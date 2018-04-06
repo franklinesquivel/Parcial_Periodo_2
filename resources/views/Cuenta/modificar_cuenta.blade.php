@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="row">
-        <div class="col s12 m7">
+        <div class="col s12 m7 offset-m2">
         <div class="card">
             <div class="card-image">
-            <img src="images/sample-1.jpg">
+            <img src="{{ asset('img/safebox.svg') }}" style="height: 15rem;">
             <span class="card-title">Card Title</span>
             </div>
             <div class="card-content">

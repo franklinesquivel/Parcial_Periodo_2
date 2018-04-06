@@ -16,8 +16,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id','DESC')->paginate(3);
-        return view('users.index', compact('users'));
+        if (auth()->check() && auth()->user()->isAdmin()) {
+           $users = User::orderBy('id','DESC')->paginate(3);
+            $users = User::all();
+            return view('users.index', compact('users'));
+        }else if(auth()->check()){
+            return redirect('/' . strtolower(auth()->user()->userType->id));
+        }else{
+            return redirect('/login');
+        }
     }
 
     /**
@@ -70,6 +77,13 @@ class UserController extends Controller
     public function show($id)
     {
         //
+        if (auth()->check() && auth()->user()->isAdmin()) {
+           return redirect('/home');
+        }else if(auth()->check()){
+            return redirect('/' . strtolower(auth()->user()->userType->id));
+        }else{
+            return redirect('/login');
+        }
     }
 
     /**
@@ -103,6 +117,17 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (auth()->check() && auth()->user()->isAdmin()) {
+           if(User::find($id)->delete()){
+                return redirect()->route("users.index")->with('success','Regisro eliminado exitosamente');
+            }else{
+                return redirect()->route("users.index")->with('success','Problemas eliminando el registro');
+            }
+        }else if(auth()->check()){
+            return redirect('/' . strtolower(auth()->user()->userType->id));
+        }else{
+            return redirect('/login');
+        }
+        
     }
 }

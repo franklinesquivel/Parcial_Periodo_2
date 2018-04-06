@@ -11,11 +11,12 @@
     <title>Sistema Bancario</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/materialize.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/materialize.js') }}"></script>
+    <script src="{{ asset('js/init.js') }}"></script>
 </head>
 <body>
     <header>
@@ -25,9 +26,31 @@
             <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 @if(auth()->check())
-                    <li><a href="{{ url('login') }}">Iniciar Sesión</a></li>
+                    
+                    @if(auth()->user()->isClient())
+                        <ul id="dpdItem" class="dropdown-content">
+                            <li><a href="{{ route('cuentas.create') }}">Añadir <i class="material-icons">add</i></a></li>
+                            <li><a href="{{ route('cuentas.index') }}">Listar <i class="material-icons">remove_red_eye</i></a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{ route('cuentas.edit', ['id' => 1]) }}">Depositar <i class="material-icons">attach_money</i></a></li>
+                            <li><a href="{{ route('cuentas.edit', ['id' => 0]) }}">Retirar <i class="material-icons">money_off</i></a></li>
+                        </ul>
+                        <li><a class="dropdown-trigger" id="dropA" data-target="dpdItem">Cuentas<i class="material-icons right">arrow_drop_down</i></a></li>
                     @else
+<<<<<<< HEAD
                     <li><a href="{{-- url(strtolower(auth()->user()->userType->id)) --}}">Inicio <i class="material-icons">home</i></a></li>
+=======
+                        <ul id="dpdItem" class="dropdown-content">
+                            <li><a href="{{ route('users.index') }}">Listar <i class=material-icons>remove_red_eye</i></a></li>
+                        </ul>
+                        <li><a class="dropdown-trigger" id="dropA" data-target="dpdItem">Usuarios<i class="material-icons right">arrow_drop_down</i></a></li>
+                    @endif
+
+                    <li><a onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar sesión <i class="material-icons left">exit_to_app</i></a></li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+                @else
+                    <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
+>>>>>>> 1926cc2a711158e8ac3d6a646ed49eafb5172e58
                 @endif
             </ul>
         </div>
@@ -46,7 +69,5 @@
         @yield('content')
     </main>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

@@ -1,15 +1,5 @@
-@include('../layouts/app')
+@extends('layouts.app')
 @section('content')
-<div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Laravel 5.5 CRUD Example from scratch</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('users.create') }}"> Create New Article</a>
-            </div>
-        </div>
-    </div>
 
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
@@ -17,39 +7,55 @@
         </div>
     @endif
 
-    <table class="table table-bordered">
-        <tr>
-            <th>id</th>
-            <th>DUI</th>
-            <th>E-mail</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Fecha de nacimiento</th>
-            <th>Edad</th>
-            <th>Direccion</th>
-            <th>Telefono</th>
-            <th width="280px">Action</th>
+    <table class="table bordered centered">
+        <tr class="red lighten-4 red-text text-darken-4">
+            <th class="center">DUI</th>
+            <th class="center">E-mail</th>
+            <th class="center">Nombre</th>
+            <th class="center">Apellido</th>
+            <th class="center" colspan="1">Action</th>
         </tr>
     @foreach ($users as $user)
-    <tr>
-        <td>{{ ++$i }}</td>
-        <td>{{ $user->dui}}</td>
-        <td>{{ $user->nombre}}</td>
-        <td>{{ $user->apellido}}</td>
-        <td>{{ $user->email}}</td>
-        <td>{{ $user->fechaNac}}</td>
-        <td>{{ $user->direccion}}</td>
-        <td>{{ $user->telefono}}</td>
-        <td>
-            <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
-            <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
-            {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
-            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-            {!! Form::close() !!}
-        </td>
-    </tr>
+        @if( auth()->user()->id != $user->id)
+            <tr>
+                <td>{{ $user->dui }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->nombre }}</td>
+                <td>{{ $user->apellido }}</td>
+                <td>
+                    <form id="{{$user->id}}" action="{{ route("users.destroy", $user->id) }}" method="POST">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <input type="button" class="" value="Eliminar" onclick="confirmar({{$user->id}})"
+                        @if ($user->cuentas() != null)
+                            @php
+                                $i = 0
+                            @endphp
+                            @foreach ($user->cuentas as $cuentas)
+                                @php
+                                    $i++
+                                @endphp
+                            @endforeach
+                            @if($i != 0)
+                                disabled
+                            @endif
+                        @endif 
+                        >
+                    </form>
+                </td>
+            </tr>
+        @endif
     @endforeach
-    </table>
+    </table>   
+    <script type="text/javascript">
+        
+        function confirmar(form) {
+            var c = window.confirm('Seguro de desear borrar este usuario');
+            console.log(form);
+            if(c == true){
+                document.getElementById(form).submit();
+            }
+        }
 
-    {!! $users->links() !!}
+    </script> 
 @endsection

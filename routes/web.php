@@ -38,6 +38,7 @@ Route::middleware(['auth.client'])->group(function(){
     Route::prefix('cle')->group(function(){
         Route::get('/', 'ClientController@index')->name('client.index');
         Route::resource('cuentas', 'CuentaController');
+        Route::get('/saldo', 'CuentaController@saldo')->name('cuenta.saldo');
     });
 });
 

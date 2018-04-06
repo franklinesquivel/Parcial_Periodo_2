@@ -27,6 +27,11 @@ class CreateUsersTable extends Migration
             $table->string("user_type_id", 3)->default("CLE");
             
             $table->foreign("user_type_id")->references('id')->on('users_types');
+
+            $table->integer("municipio_id")->unsigned();
+            
+            $table->foreign("municipio_id")->references('id')->on('municipio');
+            
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

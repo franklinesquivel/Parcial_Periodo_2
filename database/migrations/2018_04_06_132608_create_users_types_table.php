@@ -15,7 +15,7 @@ class CreateUsersTypesTable extends Migration
     {
         Schema::create('users_types', function (Blueprint $table) {
             $table->string("id", 3)->primary();
-            $table->string("name", 30);
+            $table->string("nombre", 30);
             $table->string("description", 100);
         });
     }

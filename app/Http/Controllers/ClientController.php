@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class CuentaController extends Controller
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -57,7 +57,6 @@ class CuentaController extends Controller
     public function edit($id)
     {
         //
-        return View('Cuenta.modificar_cuenta');
     }
 
     /**

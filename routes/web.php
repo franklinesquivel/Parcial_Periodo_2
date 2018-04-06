@@ -19,9 +19,26 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('user')->group(function(){
-    Route::get('/cuenta/{id_cuenta}', 'CuentaController@index')->name('accountant.index');
+Route::get('/login', function (){
+    if(Auth::check()){
+        return redirect('/');
+    }else{
+        return view( 'public.login');//
+    }
+})->name('login');
+
+Route::middleware(['auth.admin'])->group(function(){
+    Route::prefix('adm')->group(function(){
+        Route::get('/', 'AdminController@index')->name('admin.index');
+        Route::resource('users', 'UserController');
+    });
 });
 
-Route::resource('cuentas', 'CuentaController');
-Route::resource('usuarios', 'UserController');
+Route::middleware(['auth.client'])->group(function(){
+    Route::prefix('cle')->group(function(){
+        Route::get('/', 'ClientController@index')->name('client.index');
+        Route::resource('cuentas', 'CuentaController');
+    });
+});
+
+?>

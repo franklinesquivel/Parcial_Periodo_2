@@ -10,6 +10,8 @@ class Departamento extends Model
         'nombre'
     ];
 
+    public $timestamps = false;
+
     public function municipios()
     {
         return $this->hasMany('App\Municipio');

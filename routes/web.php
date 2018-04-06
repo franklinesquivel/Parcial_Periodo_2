@@ -25,7 +25,7 @@ Route::get('/login', function (){
     if(Auth::check()){
         return redirect('/');
     }else{
-        return view( 'public.login');
+        return view('auth.login');
     }
 })->name('login');
 
@@ -42,3 +42,5 @@ Route::middleware(['auth.client'])->group(function(){
         Route::resource('cuentas', 'CuentaController');
     });
 });
+
+?>

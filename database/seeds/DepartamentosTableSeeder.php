@@ -11,10 +11,12 @@ class DepartamentosTableSeeder extends Seeder
      */
     public function run()
     {
-        $datos = [];
-
+        $datos = [['nombre' => 'Ahuachapán'], ['nombre' => 'Sonsonate'], ['nombre' => 'Santa Ana'], ['nombre' => 'Cabañas'], ['nombre' => 'Chalatenango'], ['nombre' => 'Cuscatlán'], ['nombre' => 'La Libertad'], ['nombre' => 'La Paz'], ['nombre' => 'San Salvador'], ['nombre' => 'San Vicente'], ['nombre' => 'Morazán'], ['nombre' => 'San Miguel'], ['nombre' => 'Usulután'], ['nombre' => 'La Unión']];
+       
         foreach ($datos as $m) {
             App\Departamento::create($m);
         }
+
+        // App\Departamento::create($datos);
     }
 }

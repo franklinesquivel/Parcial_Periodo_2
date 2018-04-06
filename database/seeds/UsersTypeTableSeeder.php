@@ -13,13 +13,13 @@ class UsersTypeTableSeeder extends Seeder
     {
         DB::table('users_types')->insert([
             'id' => 'ADM',
-            'name' => 'Administrador',
+            'nombre' => 'Administrador',
             'description' => 'Administrador de la plataforma'
         ]);
 
         DB::table('users_types')->insert([
             'id' => 'CLE',
-            'name' => 'Cliente',
+            'nombre' => 'Cliente',
             'description' => 'Cliente de la plataforma'
         ]);
     }

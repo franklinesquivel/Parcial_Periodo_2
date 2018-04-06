@@ -65,7 +65,7 @@
                     </span>
                 @endif
             </div>
-            <div class="form-group">
+            <div class="input-field col l8 offset-l2 m10 offset-m1 s12 center-align">
                 <div class="col-md-6 col-md-offset-4">
                     <button type="submit" class="btn btn-primary">
                         Registrar

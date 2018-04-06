@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'dui', 'nombre', 'apellido', 'email', 'fechaNac', 'direccion', 'telefono', 'municipio_id', 'user_type_id'
     ];
 
     /**
@@ -26,4 +26,29 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function userType()
+    {
+        return $this->belongsTo('App\UserType');
+    }
+
+    public function isAdmin()
+    {
+        return $this->userType->id == 'ADM';
+    }
+
+    public function isClient()
+    {
+        return $this->userType->id == 'CLE';
+    }
+
+    public function cuentas()
+    {
+        return $this->isClient() ? $this->hasMany('App\'Cuenta') : null;
+    }
+
+    public function municipio()
+    {
+        return $this->belongsTo('App\'Municipio');
+    }
 }

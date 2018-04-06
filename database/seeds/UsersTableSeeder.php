@@ -24,5 +24,19 @@ class UsersTableSeeder extends Seeder
             "user_type_id" => 'ADM',
             "municipio_id" => 5
         ]);
+
+        App\User::create([
+            "dui" => '98526857-8',
+            'email' => 'fulano@gmail.com',
+            'password' => bcrypt('hola'),
+            "nombre" => 'Fulano',
+            "apellido" => 'Detal',
+            "fechaNac" => '1995-09-26',
+            "edad" => 23,
+            "direccion" => 'Por allá',
+            "telefono" => '00000000',
+            "user_type_id" => 'CLE',
+            "municipio_id" => 5
+        ]);
     }
 }

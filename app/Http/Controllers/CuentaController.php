@@ -127,10 +127,10 @@ class CuentaController extends Controller
      */
     public function destroy($id)
     {
-        if(User::find($id)->delete()){
-            return redirect()->route("users.index")->with('success','Regisro eliminado exitosamente');
+        if(Cuenta::find($id)->delete()){
+            return redirect()->route("cuentas.index")->with('success','Regisro eliminado exitosamente');
         }else{
-            return redirect()->route("users.index")->with('success','Problemas eliminando el registro');
+            return redirect()->route("cuenta.index")->with('success','Problemas eliminando el registro');
         }
     }
 }

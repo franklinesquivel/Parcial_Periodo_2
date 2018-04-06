@@ -1,1 +1,1 @@
-@include('master')
+@include('app')

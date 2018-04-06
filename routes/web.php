@@ -19,5 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::prefix('user')->group(function(){
+    Route::get('/cuenta/{id_cuenta}', 'CuentaController@index')->name('accountant.index');
+});
+
 Route::resource('cuentas', 'CuentaController');
 Route::resource('usuarios', 'UserController');

@@ -14,6 +14,9 @@ class AdminController extends Controller
     public function index()
     {
         //
+        $users = User::where('id', auth()->user()->id)->get();
+
+        return view('User.index',compact('users'));
     }
 
     /**

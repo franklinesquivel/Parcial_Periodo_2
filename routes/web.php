@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/usuarios', 'AdminController@index');
+
 Route::get('/login', function (){
     if(Auth::check()){
         return redirect('/');

@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/register', 'UserController@create')->name('register');
 
 Route::get('/login', function (){
     if(Auth::check()){
@@ -30,10 +31,10 @@ Route::get('/login', function (){
 Route::middleware(['auth.admin'])->group(function(){
     Route::prefix('adm')->group(function(){
         Route::get('/', 'AdminController@index')->name('admin.index');
-        Route::resource('users', 'UserController');
+        
     });
 });
-
+Route::resource('users', 'UserController');
 Route::middleware(['auth.client'])->group(function(){
     Route::prefix('cle')->group(function(){
         Route::get('/', 'ClientController@index')->name('client.index');
@@ -41,4 +42,9 @@ Route::middleware(['auth.client'])->group(function(){
     });
 });
 
+Route::get('/departamentos/{id}', function($id){
+    return App\Departamento::find($id)->municipios;
+});
+
+Route::post('/register', 'UserController@store')->name('register1');
 ?>

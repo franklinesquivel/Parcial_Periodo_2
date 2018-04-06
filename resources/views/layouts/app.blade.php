@@ -27,7 +27,7 @@
                 @if(auth()->check())
                     <li><a href="{{ url('login') }}">Iniciar Sesión</a></li>
                     @else
-                    <li><a href="{{ url(strtolower(auth()->user()->userType->id)) }}">Inicio <i class="material-icons">home</i></a></li>
+                    <li><a href="{{-- url(strtolower(auth()->user()->userType->id)) --}}">Inicio <i class="material-icons">home</i></a></li>
                 @endif
             </ul>
         </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Departamento;
+use App\UserType;
 
 class UserController extends Controller
 {
@@ -25,7 +27,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $departamentos = Departamento::get();
+        $tiposUsuarios = UserType::get();
+        return view('auth.register', ['departamentos' => $departamentos, 'tiposUsuarios' => $tiposUsuarios]);
     }
 
     /**
@@ -36,7 +40,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+        $user->nombre = $request->input('nombre');
+        $user->apellido = $request->input('apellido');
+        $user->email = $request->input('email');
+        $user->dui = $request->input('dui');
+        $user->password = bcrypt($request->input('password'));
+        $user->fechaNac = $request->input('fechaNac');
+        $user->direccion = $request->input('direccion');
+        $user->telefono = $request->input('telefono');
+        $user->municipio_id = $request->input('municipio');
+        $user->user_type_id = $request->input('tipoUsuario');
+        $user->edad = 20;
+        
+        $departamentos = Departamento::get();
+        $tiposUsuarios = UserType::get();
+        if($user->save()){
+            return view('auth.register', ['departamentos' => $departamentos, 'tiposUsuarios' => $tiposUsuarios]);
+        }
+        return redirect()->route('auth.register', ['departamentos' => $departamentos, 'tiposUsuarios' => $tiposUsuarios])->with('message', 'Registro no exitoso!');
     }
 
     /**

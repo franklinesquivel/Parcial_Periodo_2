@@ -26,11 +26,7 @@
                     <form id="{{$user->id}}" action="{{ route("users.destroy", $user->id) }}" method="POST">
                         {{ csrf_field() }}
                         <input type="hidden" name="_method" value="DELETE" />
-<<<<<<< HEAD
-                        <input type="button" value="Eliminar" onclick="confirmar({{$user->id}})"
-=======
-                        <button class="btn waves-effect waves-light"
->>>>>>> 46c06c2a9e13c7c011f7ecf2c9d9e548bb814696
+                        <input type="button" class="" value="Eliminar" onclick="confirmar({{$user->id}})"
                         @if ($user->cuentas() != null)
                             @php
                                 $i = 0

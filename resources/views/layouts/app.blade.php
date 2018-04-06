@@ -14,6 +14,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/materialize.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/materialize.js') }}"></script>
 </head>
 <body>
     <header>
@@ -22,11 +24,11 @@
             <a href="/" class="brand-logo">&nbsp; Sistema Bancario</a>
             <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                {{-- @if(auth()->check())
+                @if(auth()->check())
                     <li><a href="{{ url('login') }}">Iniciar Sesión</a></li>
                     @else
                     <li><a href="{{ url(strtolower(auth()->user()->userType->id)) }}">Inicio <i class="material-icons">home</i></a></li>
-                @endif --}}
+                @endif
             </ul>
         </div>
     </nav>
@@ -45,8 +47,6 @@
     </main>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('js/materialize.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

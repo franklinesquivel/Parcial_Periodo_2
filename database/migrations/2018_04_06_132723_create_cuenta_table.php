@@ -15,7 +15,7 @@ class CreateCuentaTable extends Migration
     {
         Schema::create('cuenta', function (Blueprint $table) {
             $table->increments('id');
-            $table->strig('numCuenta')->unique();
+            $table->string('numCuenta')->unique();
             $table->decimal('saldo', 15, 2);
 
             $table->integer("user_id")->unsigned();

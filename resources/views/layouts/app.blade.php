@@ -33,16 +33,13 @@
                             <li><a href="{{ route('cuentas.create') }}">Añadir <i class="material-icons">add</i></a></li>
                             <li><a href="{{ route('cuentas.index') }}">Listar <i class="material-icons">remove_red_eye</i></a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ route('cuentas') }}"></a></li>
-                            <li><a href=""></a></li>
+                            <li><a href="{{ route('cuentas.edit', ['id' => 1]) }}">Depositar <i class="material-icons">attach_money</i></a></li>
+                            <li><a href="{{ route('cuentas.edit', ['id' => 0]) }}">Retirar <i class="material-icons">money_off</i></a></li>
                         </ul>
                         <li><a class="dropdown-trigger" id="dropA" data-target="dpdItem">Cuentas<i class="material-icons right">arrow_drop_down</i></a></li>
                     @else
                         <ul id="dpdItem" class="dropdown-content">
-                            <li><a href="#!">Listar</a></li>
-                            <li><a href="#!">two</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#!">three</a></li>
+                            <li><a href="{{ route('users.index') }}">Listar <i class=material-icons>remove_red_eye</i></a></li>
                         </ul>
                         <li><a class="dropdown-trigger" id="dropA" data-target="dpdItem">Usuarios<i class="material-icons right">arrow_drop_down</i></a></li>
                     @endif

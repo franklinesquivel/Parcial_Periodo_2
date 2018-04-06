@@ -69,11 +69,18 @@ class CuentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($num_cuenta)
+    public function edit($accion)
     {
         $cuentas = Cuenta::where('user_id', '=', Auth::user()->id)->get();
 
-        return View('Cuenta.modificar_cuenta')->with('cuentas', $cuentas);
+        return View('Cuenta.modificar_cuenta')->with('cuentas', $cuentas)->with('saldo', $cuentas[0]->saldo)->with('accion', $accion);
+    }
+
+    public function saldo(Request $request)
+    {
+        $cuenta = Cuenta::where('user_id', '=', Auth::user()->id)->where('id', '=', $request->input('num_cuenta'))->first();
+
+        echo $cuenta->saldo;
     }
 
     /**
@@ -85,7 +92,31 @@ class CuentaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cuenta = Cuenta::find($request->input("cuenta"));
+        $saldo = $request->input("monto");
+
+        if (!is_numeric($saldo)) {
+            return array( "error" => true, "msg" => "El saldo debe de ser numerico" );
+        }
+
+        if ($saldo <= 0) {
+            return array( "error" => true, "msg" => "No puede usar numeros menores que 0" );
+        }
+
+        //Depositar
+        if ($id == 1)
+            $cuenta->saldo += $saldo;
+        else // Retitar
+            if ($saldo > $cuenta->saldo)
+                return array( "error" => true, "msg" => "No puede retirar una cantidad que no posea" );
+            else
+                $cuenta->saldo -= $saldo;
+
+        if (!$cuenta->save()) {
+            return array( "error" => true, "msg" => "No se ha podido realizar la transaccion" );
+        }
+
+        return array( "error" => false );;
     }
 
     /**

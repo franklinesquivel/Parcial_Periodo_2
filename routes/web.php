@@ -25,7 +25,7 @@ Route::get('/login', function (){
     if(Auth::check()){
         return redirect('/');
     }else{
-        return view('auth.login');
+        return view('Cuenta.modificar_cuenta');
     }
 })->name('login');
 

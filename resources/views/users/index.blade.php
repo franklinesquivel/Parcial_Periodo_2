@@ -16,20 +16,35 @@
             <th class="center" colspan="1">Action</th>
         </tr>
     @foreach ($users as $user)
-    <tr>
-        <td>{{ $user->dui }}</td>
-        <td>{{ $user->email }}</td>
-        <td>{{ $user->nombre }}</td>
-        <td>{{ $user->apellido }}</td>
-        
-        <td>
-            <form action="{{ route("users.destroy", $user->id) }}" method="POST">
-                {{ csrf_field() }}
-                <input type="hidden" name="_method" value="DELETE" />
-                <button type="submit" {{ $user->cuentas() != null ? "disabled" : "" }} >Eliminar</button>
-            </form>
-        </td>
-    </tr>
+        @if( auth()->user()->id != $user->id)
+            <tr>
+                <td>{{ $user->dui }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->nombre }}</td>
+                <td>{{ $user->apellido }}</td>
+                <td>
+                    <form action="{{ route("users.destroy", $user->id) }}" method="POST">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <button type="submit" 
+                        @if ($user->cuentas() != null)
+                            @php
+                                $i = 0
+                            @endphp
+                            @foreach ($user->cuentas as $cuentas)
+                                @php
+                                    $i++
+                                @endphp
+                            @endforeach
+                            @if($i != 0)
+                                disabled
+                            @endif
+                        @endif 
+                        >Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        @endif
     @endforeach
     </table>    
 

@@ -44,7 +44,7 @@ class User extends Authenticatable
 
     public function cuentas()
     {
-        return $this->isClient() ? $this->hasMany('App\'Cuenta') : null;
+        return $this->isClient() ? $this->hasMany('App\Cuenta') : null;
     }
 
     public function municipio()

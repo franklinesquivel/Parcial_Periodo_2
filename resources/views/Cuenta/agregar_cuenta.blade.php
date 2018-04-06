@@ -3,14 +3,7 @@
 @section('content')
 	<div class="row">
 		<form method="POST" action="{{ route("cuentas.store") }}">
-			<div class='input-field col l6 offset-l3 m10 offset-m1 s12'>
-				<select name="usuario">
-			     	@foreach ($usuarios as $usuario)
-						<option value="{{ $usuario->id }}">{{ $usuario->dui }}</option>	 
-					@endforeach
-    			</select>
-				<label>Usuario</label>
-			</div>
+		{{ csrf_field() }}
 			<div class='input-field col l6 offset-l3 m10 offset-m1 s12'>
 				<input name="cuenta" id="numCuenta" type="text">
           		<label for="numCuenta">Número de Cuenta</label>

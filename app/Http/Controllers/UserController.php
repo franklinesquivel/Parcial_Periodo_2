@@ -15,6 +15,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::orderBy('id','DESC')->paginate(3);
+        $users = User::all();
         return view('users.index', compact('users'));
     }
 
@@ -81,6 +82,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        if(User::find($id)->delete()){
+            return redirect()->route("users.index")->with('success','Regisro eliminado exitosamente');
+        }else{
+
+        }
     }
 }

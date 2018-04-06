@@ -41,8 +41,8 @@ class CuentaController extends Controller
         $cuenta = new Cuenta();
 
         $cuenta->saldo = $request->input('monto');
-        $cuenta->numCuenta = $request->input('numCuenta');
-        $cuenta->user_id = $request->input('usuario');
+        $cuenta->numCuenta = $request->input('cuenta');
+        $cuenta->user_id = auth()->user()->id;
 
         if($cuenta->save()){
             return redirect()->route('cuentas.create')->with('message', 'Registro exitoso!');

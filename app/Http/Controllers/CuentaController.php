@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Cuenta;
+use Illuminate\Support\Facades\Auth;
 
 class CuentaController extends Controller
 {
@@ -41,6 +43,7 @@ class CuentaController extends Controller
         $cuenta->saldo = $request->input('monto');
         $cuenta->numCuenta = $request->input('numCuenta');
         $cuenta->user_id = $request->input('usuario');
+
         if($cuenta->save()){
             return redirect()->route('cuentas.create')->with('message', 'Registro exitoso!');
         }
@@ -64,10 +67,11 @@ class CuentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($num_cuenta)
     {
-        //
-        return View('Cuenta.modificar_cuenta');
+        $cuentas = Cuenta::where('user_id', '=', Auth::user()->id)->get();
+
+        return View('Cuenta.modificar_cuenta')->with('cuentas', $cuentas);
     }
 
     /**

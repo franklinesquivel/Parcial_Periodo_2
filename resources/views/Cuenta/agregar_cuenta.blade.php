@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="row">
-		<form method="POST" action="{{ route('cuentas.store') }}">
+		<form method="POST" action="{{ route("cuentas.store") }}">
 			<div class='input-field col l6 offset-l3 m10 offset-m1 s12'>
 				<select name="usuario">
 			     	@foreach ($usuarios as $usuario)
@@ -20,7 +20,7 @@
           		<label for="monto">Monto Inicial ($)</label>
 			</div>
 			<div class='input-field col l6 offset-l3 m10 offset-m1 s12 center-align'>
-				<button class="waves-effect waves-light btn">
+				<button class="waves-effect waves-light btn" type="submit">
 					Registrar
 				</button>
 			</div>
@@ -31,9 +31,8 @@
             <p class="center-align">{{ Session::get('message') }}</p>
         @endif
 	</div>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('select').formSelect();
-		});
+
+	<script>
+		$('select').formSelect();
 	</script>
 @endsection

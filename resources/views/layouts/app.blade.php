@@ -19,14 +19,15 @@
     <header>
         <nav>
         <div class="nav-wrapper ">
-        <a href="#!" class="brand-logo">&nbsp; Sistema Bancario</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">Javascript</a></li>
-            <li><a href="mobile.html">Mobile</a></li>
-        </ul>
+            <a href="/" class="brand-logo">&nbsp; Sistema Bancario</a>
+            <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+            @if (auth()->check())
+                <li><a href="{{ url('login') }}">Iniciar Sesión</a></li>
+                @else
+                <li><a href="{{ url(strtolower(auth()->user()->userType->id)) }}">Inicio <i class="material-icons">home</i></a></li>
+            @end
+            </ul>
         </div>
     </nav>
 

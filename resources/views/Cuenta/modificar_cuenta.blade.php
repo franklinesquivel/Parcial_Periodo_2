@@ -21,8 +21,8 @@
 						</select>
 						<label for="sel_ceuntas">Cuentas:</label>
 					</div>
-					<div id="saldo" class="col s3 white-text collection-item">
-						<p class="new badge"><i class="material-icons">attach_money</i>{{ $saldo }}</p>
+					<div id="saldo" class="col s3 white-text ">
+						<span class="new badge" style="height: 2rem;"><i class="material-icons">attach_money</i>{{ $saldo }}</span>
 					</div>
 				</div>
                 
@@ -48,7 +48,7 @@
 
 		$('#sel_ceuntas').on('change',function(){
 			$.get("{{ route('cuenta.saldo') }}", {'num_cuenta' : $(this).val()}, function(data){
-				$("#saldo").html("<p class='new badge'><i class='material-icons'>attach_money</i>" + data + "</p>");
+				$("#saldo").html("<span class='new badge' style='height: 2rem;'>attach_money</i>" + data + "</span>");
 			});
 		});
 
@@ -59,7 +59,7 @@
 					M.toast({html: data.msg})
 				} else {
 					$.get('{{ route("cuenta.saldo") }}', {'num_cuenta' : $('#sel_ceuntas').val(), "_token": "{{ csrf_token() }}" }, function(data){
-						$("#saldo").html("<p class='new badge'><i class='material-icons'>attach_money</i>" + data + "</p>");
+						$("#saldo").html("<span class='new badge' style='height: 2rem;'><i class='material-icons'>attach_money</i>" + data + "</span>");
 						M.toast({html: "Su nuevo saldo es de " + data + "$"})
 					});
 				}

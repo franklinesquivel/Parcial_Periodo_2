@@ -11,7 +11,7 @@
     <title>Sistema Bancario</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
     <link href="{{ asset('css/materialize.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
@@ -20,14 +20,14 @@
 <body>
     <header>
         <nav>
-        <div class="nav-wrapper ">
-            <a href="/" class="brand-logo">&nbsp; Sistema Bancario</a>
-            <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                
-            </ul>
-        </div>
-    </nav>
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo">&nbsp; Sistema Bancario</a>
+                <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="sass.html" class="white-text">Sass</a></li>
+                </ul>
+            </div>
+        </nav>
 
     <ul class="sidenav" id="mobile-demo">
         <li><a href="sass.html">Sass</a></li>
@@ -44,5 +44,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        $('.sidenav').sidenav();
+    </script>
 </body>
 </html>

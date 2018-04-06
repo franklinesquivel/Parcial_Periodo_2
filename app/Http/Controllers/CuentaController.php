@@ -17,6 +17,8 @@ class CuentaController extends Controller
     public function index()
     {
         //
+        $cuentas = Cuenta::where('user_id','=', auth()->user()->id)->get();
+        return view('Cuenta.lista_cuentas', compact('cuentas'));
     }
 
     /**
@@ -70,6 +72,10 @@ class CuentaController extends Controller
     public function edit($accion)
     {
         $cuentas = Cuenta::where('user_id', '=', Auth::user()->id)->get();
+
+        if (sizeof($cuentas) <= 0) {
+            return "Error";
+        }
 
         return View('Cuenta.modificar_cuenta')->with('cuentas', $cuentas)->with('saldo', $cuentas[0]->saldo)->with('accion', $accion);
     }
@@ -125,6 +131,10 @@ class CuentaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(Cuenta::find($id)->delete()){
+            return redirect()->route("cuentas.index")->with('success','Regisro eliminado exitosamente');
+        }else{
+            return redirect()->route("cuenta.index")->with('success','Problemas eliminando el registro');
+        }
     }
 }

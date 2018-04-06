@@ -86,7 +86,7 @@ class UserController extends Controller
         if(User::find($id)->delete()){
             return redirect()->route("users.index")->with('success','Regisro eliminado exitosamente');
         }else{
-
+            return redirect()->route("users.index")->with('success','Problemas eliminando el registro');
         }
     }
 }

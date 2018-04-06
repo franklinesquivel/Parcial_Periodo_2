@@ -11,23 +11,50 @@
     <title>Sistema Bancario</title>
 
     <!-- Styles -->
-    
     <link href="{{ asset('css/materialize.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/materialize.js') }}"></script>
+    <script src="{{ asset('js/init.js') }}"></script>
 </head>
 <body>
     <header>
         <nav>
-            <div class="nav-wrapper">
-                <a href="/" class="brand-logo">&nbsp; Sistema Bancario</a>
-                <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="sass.html" class="white-text">Sass</a></li>
-                </ul>
-            </div>
-        </nav>
+        <div class="nav-wrapper ">
+            <a href="/" class="brand-logo">&nbsp; Sistema Bancario</a>
+            <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                @if(auth()->check())
+                    <li><a href="{{ url(strtolower(auth()->user()->userType->id))  }}">Inicio <i class="material-icons left">home</i></a></li>
+
+                    @if(auth()->user()->isClient())
+                        <ul id="dpdItem" class="dropdown-content">
+                            <li><a href="{{ route('cuentas.create') }}">Añadir <i class="material-icons">add</i></a></li>
+                            <li><a href="{{ route('cuentas.index') }}">Listar <i class="material-icons">remove_red_eye</i></a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{ route('cuentas') }}"></a></li>
+                            <li><a href=""></a></li>
+                        </ul>
+                        <li><a class="dropdown-trigger" id="dropA" data-target="dpdItem">Cuentas<i class="material-icons right">arrow_drop_down</i></a></li>
+                    @else
+                        <ul id="dpdItem" class="dropdown-content">
+                            <li><a href="#!">Listar</a></li>
+                            <li><a href="#!">two</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#!">three</a></li>
+                        </ul>
+                        <li><a class="dropdown-trigger" id="dropA" data-target="dpdItem">Usuarios<i class="material-icons right">arrow_drop_down</i></a></li>
+                    @endif
+
+                    <li><a onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar sesión <i class="material-icons left">exit_to_app</i></a></li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+                @else
+                    <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
+                @endif
+            </ul>
+        </div>
+    </nav>
 
     <ul class="sidenav" id="mobile-demo">
         <li><a href="sass.html">Sass</a></li>
@@ -42,10 +69,5 @@
         @yield('content')
     </main>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script>
-        $('.sidenav').sidenav();
-    </script>
 </body>
 </html>

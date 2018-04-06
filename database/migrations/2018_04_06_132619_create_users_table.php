@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
 
             $table->integer("municipio_id")->unsigned();
             
-            $table->foreign("municipio_id")->references('id')->on('municipio');
+            $table->foreign("municipio_id")->references('id')->on('municipios');
             
             $table->rememberToken();
             $table->timestamps();

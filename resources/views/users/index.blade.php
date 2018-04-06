@@ -26,7 +26,7 @@
                     <form action="{{ route("users.destroy", $user->id) }}" method="POST">
                         {{ csrf_field() }}
                         <input type="hidden" name="_method" value="DELETE" />
-                        <button type="submit" 
+                        <button class="btn waves-effect waves-light"
                         @if ($user->cuentas() != null)
                             @php
                                 $i = 0

@@ -23,7 +23,7 @@ Route::get('/login', function (){
     if(Auth::check()){
         return redirect('/');
     }else{
-        return view( 'public.login');
+        return view('auth.login');
     }
 })->name('login');
 

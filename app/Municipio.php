@@ -10,6 +10,8 @@ class Municipio extends Model
         'nombre', 'departamento_id'
     ];
 
+    public $timestamps = false;
+
     public function departamento()
     {
         return $this->belongsTo('App\Departamento');

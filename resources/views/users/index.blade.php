@@ -23,10 +23,10 @@
                 <td>{{ $user->nombre }}</td>
                 <td>{{ $user->apellido }}</td>
                 <td>
-                    <form action="{{ route("users.destroy", $user->id) }}" method="POST">
+                    <form id="{{$user->id}}" action="{{ route("users.destroy", $user->id) }}" method="POST">
                         {{ csrf_field() }}
                         <input type="hidden" name="_method" value="DELETE" />
-                        <button type="submit" 
+                        <input type="button" value="Eliminar" onclick="confirmar({{$user->id}})"
                         @if ($user->cuentas() != null)
                             @php
                                 $i = 0
@@ -40,14 +40,22 @@
                                 disabled
                             @endif
                         @endif 
-                        >Eliminar</button>
+                        >
                     </form>
                 </td>
             </tr>
         @endif
     @endforeach
-    </table>    
+    </table>   
+    <script type="text/javascript">
+        
+        function confirmar(form) {
+            var c = window.confirm('Seguro de desear borrar este usuario');
+            console.log(form);
+            if(c == true){
+                document.getElementById(form).submit();
+            }
+        }
 
-    <script>
-    </script>
+    </script> 
 @endsection

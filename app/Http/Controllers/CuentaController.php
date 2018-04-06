@@ -17,6 +17,8 @@ class CuentaController extends Controller
     public function index()
     {
         //
+        $cuentas = Cuenta::where('user_id','=', auth()->user()->id)->get();
+        return view('Cuenta.lista_cuentas', compact('cuentas'));
     }
 
     /**
@@ -125,6 +127,10 @@ class CuentaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(User::find($id)->delete()){
+            return redirect()->route("users.index")->with('success','Regisro eliminado exitosamente');
+        }else{
+            return redirect()->route("users.index")->with('success','Problemas eliminando el registro');
+        }
     }
 }

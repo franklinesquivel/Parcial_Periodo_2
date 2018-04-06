@@ -61,6 +61,7 @@ class CuentaController extends Controller
     public function show($id)
     {
         //
+        return redirect('/home');
     }
 
     /**
@@ -74,7 +75,7 @@ class CuentaController extends Controller
         $cuentas = Cuenta::where('user_id', '=', Auth::user()->id)->get();
 
         if (sizeof($cuentas) <= 0) {
-            return "Error";
+            return redirect('/home');
         }
 
         return View('Cuenta.modificar_cuenta')->with('cuentas', $cuentas)->with('saldo', $cuentas[0]->saldo)->with('accion', $accion);

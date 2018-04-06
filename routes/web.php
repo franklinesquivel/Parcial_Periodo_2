@@ -42,3 +42,5 @@ Route::middleware(['auth.client'])->group(function(){
         Route::resource('cuentas', 'CuentaController');
     });
 });
+
+?>

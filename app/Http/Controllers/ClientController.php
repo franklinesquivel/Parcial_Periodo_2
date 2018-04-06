@@ -14,6 +14,7 @@ class ClientController extends Controller
     public function index()
     {
         //
+        return view(User.listar_usuario);
     }
 
     /**
